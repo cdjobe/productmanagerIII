@@ -19,7 +19,7 @@ module.exports.createProduct = ( request, response ) => {
 
 module.exports.showAll = ( request, response ) => {
     Product.find()
-        .then(allProducts => response.json({ products: allProducts }))
+        .then(allProducts => response.json({ allProducts }))
         .catch(err => response.json({message: "Something is wrong ", error: err }));
 }
 
@@ -36,7 +36,7 @@ module.exports.deleteProduct = ( request, response ) => {
 }
 
 module.exports.updateProduct = ( request, response) => {
-    Product.findOneAndUpdate({ _id: request.params.id}, req.body, { new: true })
-    .then(updatedProduct => response.json({ product: updatedProduct }))
+    Product.findOneAndUpdate({ _id: request.params.id}, request.body, { new: true })
+    .then(updatedProduct => response.json({ updatedProduct }))
     .catch(err => response.json({ message: "Something went wrong", error: err}));
 };

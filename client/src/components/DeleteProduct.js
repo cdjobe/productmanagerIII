@@ -1,14 +1,17 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 import axios from 'axios';
+import { navigate } from '@reach/router';
 
 export default props => {
     
     var productId = props.productId;
-    console.log(productId);
 
     const deleteProduct=(productId)=>{
         axios.delete(`http://localhost:8000/api/product/delete/${productId}`)
-            .then(response => console.log(response));
+            .then(response => {
+                props.removeFromDom(productId)
+            });
+        navigate('/');
     }
     
     return (
